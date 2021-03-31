@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import { Button } from 'baseui/button';
-import { DisplayLarge } from 'baseui/typography';
+import { DisplayLarge, DisplayMedium } from 'baseui/typography';
 
 import { StyledPage } from 'styles/StyledPage';
 import axios from 'utils/axios';
@@ -56,7 +56,7 @@ export default function Main() {
 
   return (
     <StyledPage data-testid="main-page">
-      <DisplayLarge data-testid="main-page-joke">{joke}</DisplayLarge>
+      <DisplayMedium data-testid="main-page-joke">{joke}</DisplayMedium>
       {/* <h2>{t('main.items', { postProcess: 'interval', count: 0 })}</h2> */}
     </StyledPage>
   );
