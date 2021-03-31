@@ -1,14 +1,12 @@
 import { useTranslation } from 'react-i18next';
+import React from 'react';
 
+import { DisplayMedium } from 'baseui/typography';
+
+import { MainLayoutSidebarNavigation } from 'components/MainLayout/MainLayoutSidebar/MainLayoutSidebarNavigation';
 import { useAuthActions } from 'hooks/useAuthActions';
 
-import { MainLayoutSidebarNavigation } from './MainLayoutSidebarNavigation/MainLayoutSidebarNavigation';
-
-import {
-  StyledMainLayoutSidebar,
-  StyledMainLayoutSidebarLogo,
-  StyledMainLayoutSidebarLogoutButton,
-} from './StyledMainLayoutSidebar';
+import { StyledLogoutButton, StyledMainLayoutSidebar, StyledMainLayoutSidebarLogo } from './StyledMainLayoutSidebar';
 
 export function MainLayoutSidebar() {
   const { t } = useTranslation();
@@ -16,11 +14,11 @@ export function MainLayoutSidebar() {
 
   return (
     <StyledMainLayoutSidebar>
-      <StyledMainLayoutSidebarLogo>LOGO</StyledMainLayoutSidebarLogo>
+      <StyledMainLayoutSidebarLogo>
+        <DisplayMedium>LOGO</DisplayMedium>
+      </StyledMainLayoutSidebarLogo>
       <MainLayoutSidebarNavigation />
-      <StyledMainLayoutSidebarLogoutButton onClick={handleLogout}>
-        {t('sidebar.logout')}
-      </StyledMainLayoutSidebarLogoutButton>
+      <StyledLogoutButton onClick={handleLogout}>{t('sidebar.logout')}</StyledLogoutButton>
     </StyledMainLayoutSidebar>
   );
 

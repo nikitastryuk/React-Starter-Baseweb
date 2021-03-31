@@ -8,7 +8,7 @@ import { StyledPage } from 'styles/StyledPage';
 import { useAsync } from 'hooks/useAsync';
 import { useAuthActions } from 'hooks/useAuthActions';
 
-export const StyledLogin = styled('div', ({ $theme }) => ({
+export const StyledLogin = styled('div', () => ({
   display: 'flex',
 }));
 

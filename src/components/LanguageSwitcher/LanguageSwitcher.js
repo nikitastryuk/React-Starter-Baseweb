@@ -1,20 +1,23 @@
-import { LANGUAGES } from 'i18n/i18n';
 import { useTranslation } from 'react-i18next';
 
-import { BUTTON_VARIANTS, Button } from 'components/Button/Button';
+import { Button, KIND, SHAPE, SIZE } from 'baseui/button';
+import { ButtonGroup } from 'baseui/button-group';
+
+import { LANGUAGES } from 'i18n/i18n';
 
 export function LanguageSwitcher() {
   const { i18n } = useTranslation();
 
   return (
-    <div>
-      <Button variant={BUTTON_VARIANTS.PRIMARY} onClick={() => changeLanguage(LANGUAGES.RU)}>
-        {LANGUAGES.RU}
-      </Button>
-      <Button variant={BUTTON_VARIANTS.PRIMARY} onClick={() => changeLanguage(LANGUAGES.EN)}>
-        {LANGUAGES.EN}
-      </Button>
-    </div>
+    <ButtonGroup
+      selected={i18n.language === LANGUAGES.RU ? 0 : 1}
+      size={SIZE.compact}
+      kind={KIND.primary}
+      shape={SHAPE.square}
+    >
+      <Button onClick={() => changeLanguage(LANGUAGES.RU)}>{LANGUAGES.RU}</Button>
+      <Button onClick={() => changeLanguage(LANGUAGES.EN)}>{LANGUAGES.EN}</Button>
+    </ButtonGroup>
   );
 
   function changeLanguage(lng) {

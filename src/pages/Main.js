@@ -3,7 +3,9 @@ import { useQuery, useQueryErrorResetBoundary } from 'react-query';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
-import { Button } from 'components/Button/Button';
+import { Button } from 'baseui/button';
+import { DisplayLarge } from 'baseui/typography';
+
 import { StyledPage } from 'styles/StyledPage';
 import axios from 'utils/axios';
 
@@ -15,8 +17,8 @@ export function MainErrorBoundary({ children }) {
     <ErrorBoundary
       onReset={reset}
       FallbackComponent={({ error, resetErrorBoundary }) => (
-        <StyledPage fontsize="50px">
-          <h1>{error.message}</h1>
+        <StyledPage>
+          <DisplayLarge>{error.message}</DisplayLarge>
           <Button onClick={resetErrorBoundary}>{t('main.tryAgain')}</Button>
         </StyledPage>
       )}
@@ -45,12 +47,16 @@ export default function Main() {
   });
 
   if (isFetching) {
-    return <StyledPage>{t('global.loading')}</StyledPage>;
+    return (
+      <StyledPage>
+        <DisplayLarge>{t('global.loading')}</DisplayLarge>
+      </StyledPage>
+    );
   }
 
   return (
-    <StyledPage fontsize="50px" data-testid="main-page">
-      <h1 data-testid="main-page-joke">{joke}</h1>
+    <StyledPage data-testid="main-page">
+      <DisplayLarge data-testid="main-page-joke">{joke}</DisplayLarge>
       {/* <h2>{t('main.items', { postProcess: 'interval', count: 0 })}</h2> */}
     </StyledPage>
   );

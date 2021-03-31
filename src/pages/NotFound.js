@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
+import { DisplayLarge } from 'baseui/typography';
+
 import { StyledPage } from 'styles/StyledPage';
 
 export default function NotFound() {
@@ -7,7 +9,7 @@ export default function NotFound() {
 
   return (
     <StyledPage>
-      <h1>{t('notFound.title')}</h1>
+      <DisplayLarge>{t('notFound.title')}</DisplayLarge>
     </StyledPage>
   );
 }

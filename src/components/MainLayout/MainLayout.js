@@ -14,7 +14,6 @@ export function MainLayout({ children }) {
         <LanguageSwitcher />
         <ThemeSwitcher />
       </StyledMainLayoutToolbar>
-
       <StyledMainLayoutContent>{children}</StyledMainLayoutContent>
     </StyledMainLayout>
   );

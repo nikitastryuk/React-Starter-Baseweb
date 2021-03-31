@@ -7,7 +7,7 @@ import { useAuthState } from 'hooks/useAuthState';
 
 import { StyledApp } from './StyledApp';
 
-// const AuthenticatedApp = lazy(() => import(/* webpackPrefetch: true */ './AuthenticatedApp'));
+const AuthenticatedApp = lazy(() => import(/* webpackPrefetch: true */ './AuthenticatedApp'));
 const UnAuthenticatedApp = lazy(() => import('./UnAuthenticatedApp'));
 
 export function App() {
@@ -18,7 +18,7 @@ export function App() {
     <StyledApp>
       <ErrorBoundary FallbackComponent={() => <StyledPage>{t('app.error')}</StyledPage>}>
         <Suspense fallback={<StyledPage>{t('global.loading')}</StyledPage>}>
-          {user ? 123 : <UnAuthenticatedApp />}
+          {user ? <AuthenticatedApp /> : <UnAuthenticatedApp />}
         </Suspense>
       </ErrorBoundary>
     </StyledApp>

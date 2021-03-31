@@ -1,24 +1,31 @@
-import { useContext } from 'react';
+import { THEMES } from 'app/AppProviders/ThemeProvider';
+import { useTheme } from 'hooks/useTheme';
 
-import { THEME_MODES } from 'app/theme/ThemeProvider';
-import { ThemeContext } from 'styled-components';
+import { Button, KIND, SHAPE, SIZE } from 'baseui/button';
+import { styled } from 'baseui';
 
-import { StyledCircleButton, StyledThemeSwitcher } from './StyledThemeSwitcher';
+const StyledLightThemeButton = styled(Button, ({ $theme }) => ({
+  marginRight: $theme.sizing.scale100,
+}));
 
 export function ThemeSwitcher() {
-  const { themeMode, setThemeMode } = useContext(ThemeContext);
+  const { theme, setTheme } = useTheme();
+
   return (
-    <StyledThemeSwitcher>
-      <StyledCircleButton
-        selectedThemeMode={THEME_MODES.LIGHT}
-        selected={themeMode === THEME_MODES.LIGHT}
-        onClick={() => setThemeMode(THEME_MODES.LIGHT)}
+    <div>
+      <StyledLightThemeButton
+        style={{ marginRight: 8 }}
+        kind={theme === THEMES.LIGHT ? KIND.secondary : KIND.primary}
+        size={SIZE.compact}
+        shape={SHAPE.square}
+        onClick={() => setTheme(THEMES.LIGHT)}
       />
-      <StyledCircleButton
-        selectedThemeMode={THEME_MODES.DARK}
-        selected={themeMode === THEME_MODES.DARK}
-        onClick={() => setThemeMode(THEME_MODES.DARK)}
+      <Button
+        kind={theme === THEMES.DARK ? KIND.secondary : KIND.primary}
+        size={SIZE.compact}
+        shape={SHAPE.square}
+        onClick={() => setTheme(THEMES.DARK)}
       />
-    </StyledThemeSwitcher>
+    </div>
   );
 }
