@@ -8,7 +8,6 @@
 > - **@babel/preset-env** // Allows to use the latest JavaScript and makes bundle smaller.
 > - **@babel/preset-react** // Allows to use React.
 > - **babel-plugin-module-resolver** // Lets to specify all the folders you need shortcuts (aliases) for your module imports.
-> - **babel-plugin-styled-components** // Allows to use Styled-components.
 > - **babel-plugin-transform-react-remove-prop-types** // Removes Prop Types in production mode.
 > - **babel-plugin-react-remove-properties** // Removes selectors like "data-test" in production mode.
 
@@ -47,10 +46,3 @@
 > - **eslint-plugin-testing-library** // React testing library specific linting rules.
 > - **eslint-import-resolver-babel-module** // Resolver for eslint-plugin-import (to configure aliases).
 > - **eslint-plugin-sort-imports-es6-autofix** // A sort-imports rule that properly distinguishes between ES6 import types and that is also able to autofix all detected problems.
-
-> ### StyleLint
->
-> - **stylelint-config-prettier** // Turns off all rules that are unnecessary or might conflict with Prettier.
-> - **stylelint-config-rational-order** // Sorts related property declarations by grouping together.
-> - **stylelint-config-standard** // Extends recommended stylelint config.
-> - **stylelint-config-styled-components** // Config to disable stylelint rules that clash with styled-components.
