@@ -6,14 +6,15 @@
 - **Baseweb / Styletron**
 - **Axios / React-Query**
 - **React-i18next**
-- **EsLint / StyleLint / Prettier**
+- **EsLint / Prettier**
 - **Babel / Webpack**
 - **Simple-git-hooks / Lint-staged**
 - **Jest / Cypress / Rtl**
 
 ### Running the project
 
-After installing `node_modules`, you're ready!
+- Run `npx simple-git-hooks` to set all git hooks
+- Run `npm i` to install dependencies
 
 ### Commonly used scripts
 
@@ -25,13 +26,12 @@ After installing `node_modules`, you're ready!
 | `cypress`      | Opens Cypress                                             |
 | `format:check` | Runs Prettier                                             |
 | `lint:js`      | Runs EsLint                                               |
-| `lint:style`   | Runs StyleLint                                            |
 | `deploy`       | Deploys to Github Pages                                   |
 
 ### CI jobs
 
 - Install and Cache dependencies
-- Run Format & Lint (Prettier, EsLint, StyleLint)
+- Run Format & Lint (Prettier, EsLint)
 - Run e2e tests (Cypress)
 - Run Unit tests (Jest)
 - Build and Deploy (gh-pages)
