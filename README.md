@@ -3,7 +3,7 @@
 ## Tech Stack
 
 - **React / React Router**
-- **Styled-components / Styled-icons**
+- **Baseweb / Styletron**
 - **Axios / React-Query**
 - **React-i18next**
 - **EsLint / StyleLint / Prettier**

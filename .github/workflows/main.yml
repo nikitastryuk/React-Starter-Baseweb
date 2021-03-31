@@ -42,8 +42,6 @@ jobs:
         run: npm run format:check
       - name: Run EsLint
         run: npm run lint:js
-      - name: Run StyleLint
-        run: npm run lint:style
 
   cypress:
     runs-on: ubuntu-latest

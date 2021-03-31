@@ -22,7 +22,6 @@
           "pages": "./src/pages",
           "i18n": "./src/i18n",
           "utils": "./src/utils",
-          "store": "./src/store",
           "hooks": "./src/hooks",
           "constants": "./src/constants",
           "routes": "./src/routes",
