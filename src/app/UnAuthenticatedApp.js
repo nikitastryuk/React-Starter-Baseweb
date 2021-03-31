@@ -1,7 +1,7 @@
 import { Redirect, Switch } from 'react-router';
 import { Route } from 'react-router-dom';
 
-import { ROUTE_PATHS } from 'app/routes';
+import { ROUTE_PATHS } from 'routes';
 import Login from 'pages/Login';
 
 export default function UnAuthenticatedApp() {

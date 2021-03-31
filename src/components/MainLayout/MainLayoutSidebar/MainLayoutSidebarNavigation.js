@@ -4,7 +4,7 @@ import React from 'react';
 
 import { Navigation } from 'baseui/side-navigation';
 
-import { ROUTE_PATHS } from 'app/routes';
+import { ROUTE_PATHS } from 'routes';
 
 export function MainLayoutSidebarNavigation() {
   const { t } = useTranslation();

@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { memo } from 'react';
 
 import { MainLayout } from 'components/MainLayout/MainLayout';
-import { ROUTE_PATHS } from 'app/routes';
+import { ROUTE_PATHS } from 'routes';
 import Main, { MainErrorBoundary } from 'pages/Main';
 import NotFound from 'pages/NotFound';
 

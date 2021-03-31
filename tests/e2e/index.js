@@ -1,4 +1,4 @@
-const { ROUTE_PATHS } = require('app/routes');
+const { ROUTE_PATHS } = require('routes');
 
 beforeEach(() => {
   cy.login();

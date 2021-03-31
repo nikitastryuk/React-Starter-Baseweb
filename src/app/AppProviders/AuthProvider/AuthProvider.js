@@ -2,8 +2,8 @@ import { createContext, useCallback, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { ACCESS_TOKEN_LS_KEY, REFRESH_TOKEN_LS_KEY } from 'constants';
-import { AuthApi } from 'app/auth/authApi';
-import { AuthProviderLoading } from 'app/auth/AuthProviderLoading';
+import { AuthApi } from 'app/AppProviders/AuthProvider/authApi';
+import { AuthProviderLoading } from 'app/AppProviders/AuthProvider/AuthProviderLoading';
 import { useAsync } from 'hooks/useAsync';
 import ls from 'utils/localStorage';
 
