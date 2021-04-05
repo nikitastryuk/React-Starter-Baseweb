@@ -13,29 +13,16 @@ import { AuthProvider } from 'app/AppProviders/AuthProvider/AuthProvider';
 import axios from 'utils/axios';
 import ls from 'utils/localStorage';
 
-jest.mock('utils/axios', () => {
-  return {
-    interceptors: {
-      request: {
-        use: jest.fn(),
-        eject: jest.fn(),
-      },
-      response: {
-        use: jest.fn(),
-        eject: jest.fn(),
-      },
-    },
-  };
-});
+jest.mock('utils/axios');
 
 describe('<AxiosInterceptors />', () => {
   it('should add interceptors and clean up when unmounted', async () => {
     const { unmount } = render(<AxiosInterceptors />, { wrapper: AuthProvider });
-    expect(axios.interceptors.request.use).toHaveBeenCalledTimes(1);
-    expect(axios.interceptors.response.use).toHaveBeenCalledTimes(2);
+    expect(axios.interceptors.request.use).toHaveBeenCalledTimes(3);
+    expect(axios.interceptors.response.use).toHaveBeenCalledTimes(3);
     unmount();
-    expect(axios.interceptors.request.eject).toHaveBeenCalledTimes(1);
-    expect(axios.interceptors.response.eject).toHaveBeenCalledTimes(2);
+    expect(axios.interceptors.request.eject).toHaveBeenCalledTimes(3);
+    expect(axios.interceptors.response.eject).toHaveBeenCalledTimes(3);
   });
   it('should set request Authorization header correctly', async () => {
     const accessToken = 'accessToken';
@@ -86,8 +73,9 @@ describe('<AxiosInterceptors />', () => {
       };
       const refreshTokenLogout = jest.fn();
       const interceptorErrorHandler = makeRefreshUserTokenInterceptorErrorHandler(refreshTokenLogout);
-      interceptorErrorHandler(error);
+      const response = interceptorErrorHandler(error);
       expect(refreshTokenLogout).not.toHaveBeenCalled();
+      await expect(response).rejects.toEqual(error);
     });
   });
 });
