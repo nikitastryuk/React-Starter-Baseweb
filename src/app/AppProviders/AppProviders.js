@@ -3,7 +3,7 @@ import { HashRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { AuthProvider } from 'app/AppProviders/AuthProvider/AuthProvider';
-import { AxiosInterceptorsProvider } from 'app/AppProviders/AxiosInterceptorsProvider';
+import { AxiosInterceptors } from 'app/AppProviders/AxiosInterceptors';
 import { QueryClientProvider } from 'app/AppProviders/QueryClientProvider';
 import { StyletronProvider } from 'app/AppProviders/StyletronProvider';
 import { ThemeProvider } from 'app/AppProviders/ThemeProvider';
@@ -17,7 +17,8 @@ export function AppProviders({ children }) {
         <StyletronProvider>
           <ThemeProvider>
             <AuthProvider>
-              <AxiosInterceptorsProvider>{children}</AxiosInterceptorsProvider>
+              <AxiosInterceptors />
+              {children}
             </AuthProvider>
           </ThemeProvider>
         </StyletronProvider>

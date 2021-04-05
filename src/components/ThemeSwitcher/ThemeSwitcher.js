@@ -8,8 +8,8 @@ const StyledThemeSwitcher = styled('div', ({ $theme }) => ({
   marginTop: $theme.sizing.scale300,
 }));
 
-const StyledLightThemeButton = styled(Button, ({ $theme }) => ({
-  marginRight: $theme.sizing.scale300,
+const StyledDarkThemeButton = styled(Button, ({ $theme }) => ({
+  marginLeft: $theme.sizing.scale300,
 }));
 
 export function ThemeSwitcher() {
@@ -17,13 +17,13 @@ export function ThemeSwitcher() {
 
   return (
     <StyledThemeSwitcher>
-      <StyledLightThemeButton
+      <Button
         kind={theme === THEMES.LIGHT ? KIND.secondary : KIND.primary}
         size={SIZE.compact}
         shape={SHAPE.square}
         onClick={() => setTheme(THEMES.LIGHT)}
       />
-      <Button
+      <StyledDarkThemeButton
         kind={theme === THEMES.DARK ? KIND.secondary : KIND.primary}
         size={SIZE.compact}
         shape={SHAPE.square}
