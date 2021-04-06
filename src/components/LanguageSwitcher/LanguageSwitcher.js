@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, KIND, SHAPE, SIZE } from 'baseui/button';
 import { ButtonGroup } from 'baseui/button-group';
 
-import { LANGUAGES } from 'i18n/i18n';
+import { LANGUAGES } from 'constants';
 
 export function LanguageSwitcher() {
   const { i18n } = useTranslation();

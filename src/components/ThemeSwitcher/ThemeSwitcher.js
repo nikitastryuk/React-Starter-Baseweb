@@ -18,12 +18,14 @@ export function ThemeSwitcher() {
   return (
     <StyledThemeSwitcher>
       <Button
+        data-testid="light-theme-button"
         kind={theme === THEMES.LIGHT ? KIND.secondary : KIND.primary}
         size={SIZE.compact}
         shape={SHAPE.square}
         onClick={() => setTheme(THEMES.LIGHT)}
       />
       <StyledDarkThemeButton
+        data-testid="dark-theme-button"
         kind={theme === THEMES.DARK ? KIND.secondary : KIND.primary}
         size={SIZE.compact}
         shape={SHAPE.square}
