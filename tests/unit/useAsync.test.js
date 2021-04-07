@@ -63,7 +63,7 @@ describe('useAsync', () => {
     await act(async () => {
       reject(rejectedValue);
       await p.catch(() => {
-        /* ignore erorr */
+        // ignore error
       });
     });
     expect(result.current).toEqual({ ...defaultState, error: rejectedValue });
