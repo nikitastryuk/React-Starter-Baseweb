@@ -1,11 +1,19 @@
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import { ACCESS_TOKEN_LS_KEY, REFRESH_TOKEN_LS_KEY } from 'constants';
 import { AuthActionsContext, AuthProvider, AuthStateContext } from 'app/AppProviders/AuthProvider/AuthProvider';
 import { AuthApi } from 'app/AppProviders/AuthProvider/authApi';
+
 import ls from 'utils/localStorage';
 
 jest.mock('react-i18next');
+
+const USER = 'user';
+const AUTH_TOKENS = {
+  accessToken: 'accessToken',
+  refreshToken: 'refreshToken',
+};
 
 function TestComponent() {
   return (
@@ -30,9 +38,20 @@ function renderWithProviders() {
   return render(<TestComponent />, { wrapper: AuthProvider });
 }
 
+function expectAuthTokensAreSet() {
+  expect(ls.setItem).toBeCalledWith(ACCESS_TOKEN_LS_KEY, AUTH_TOKENS.accessToken);
+  expect(ls.setItem).toBeCalledWith(REFRESH_TOKEN_LS_KEY, AUTH_TOKENS.refreshToken);
+}
+
 describe('<AuthProvider />', () => {
   beforeEach(() => {
+    // We run get user if tokens are stored - making this not happen
     jest.spyOn(ls, 'getItem').mockReturnValue(null);
+    jest.spyOn(ls, 'setItem');
+    jest.spyOn(AuthApi, 'logoutUser').mockReturnValue(Promise.resolve());
+  });
+  afterEach(() => {
+    jest.clearAllMocks();
   });
   it('should have empty initial state', async () => {
     const { getByTestId } = renderWithProviders();
@@ -44,27 +63,50 @@ describe('<AuthProvider />', () => {
     expect(queryByTestId('auth-provider-loading-spinner')).toBeNull();
   });
 
-  it('should load user if auth tokens are stored', async () => {
-    const getUserResponse = { data: { user: 'user' } };
+  it('should get user if auth tokens are stored', async () => {
+    const getUserResponse = { data: { user: USER } };
     jest.spyOn(ls, 'getItem').mockReturnValue('tokens');
     jest.spyOn(AuthApi, 'getUser').mockReturnValue(Promise.resolve(getUserResponse));
     const { getByTestId, findByTestId } = renderWithProviders();
     expect(AuthApi.getUser).toHaveBeenCalledTimes(1);
     expect(getByTestId('auth-provider-loading-spinner')).toBeTruthy();
-    expect((await findByTestId('auth-provider-state-value')).textContent).toBe(getUserResponse.data.user);
+    expect((await findByTestId('auth-provider-state-value')).textContent).toBe(USER);
   });
 
   it('should login and logout user', async () => {
-    const loginUserResponse = { data: { user: 'user' } };
+    const loginUserResponse = { data: { user: USER, ...AUTH_TOKENS } };
     jest.spyOn(AuthApi, 'loginUser').mockReturnValue(Promise.resolve(loginUserResponse));
     const { getByRole, findByTestId } = renderWithProviders();
     userEvent.click(getByRole('button', { name: 'Login' }));
     expect(AuthApi.loginUser).toHaveBeenCalledTimes(1);
-    expect((await findByTestId('auth-provider-state-value')).textContent).toBe(loginUserResponse.data.user);
+    expect((await findByTestId('auth-provider-state-value')).textContent).toBe(USER);
+    expectAuthTokensAreSet();
 
-    jest.spyOn(AuthApi, 'logoutUser').mockReturnValue(Promise.resolve());
     userEvent.click(getByRole('button', { name: 'Logout' }));
     expect(AuthApi.logoutUser).toHaveBeenCalledTimes(1);
     expect((await findByTestId('auth-provider-state-value')).textContent).toBe('');
+  });
+
+  it('should refresh user token', async () => {
+    const refreshUserResponse = {
+      data: {
+        ...AUTH_TOKENS,
+      },
+    };
+    jest.spyOn(AuthApi, 'refreshUserToken').mockReturnValue(Promise.resolve(refreshUserResponse));
+    const { getByRole } = renderWithProviders();
+    userEvent.click(getByRole('button', { name: 'Refresh token' }));
+    // ls.setItem calls happens in microtask queue - await refreshUserToken is done
+    await expect(AuthApi.refreshUserToken).toHaveBeenCalledTimes(1);
+    expectAuthTokensAreSet();
+  });
+
+  it('should logout user if refersh token fails', async () => {
+    jest.spyOn(AuthApi, 'refreshUserToken').mockReturnValue(Promise.reject());
+    const { getByRole } = renderWithProviders();
+    userEvent.click(getByRole('button', { name: 'Refresh token' }));
+    // logoutUser call happens in microtask queue - await refreshUserToken is done
+    await expect(AuthApi.refreshUserToken).toHaveBeenCalledTimes(1);
+    expect(AuthApi.logoutUser).toHaveBeenCalledTimes(1);
   });
 });
