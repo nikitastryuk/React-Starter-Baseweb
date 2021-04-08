@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { LanguageSwitcher } from 'components/LanguageSwitcher/LanguageSwitcher';
-import { MainLayoutSidebar } from 'components/MainLayout/MainLayoutSidebar/MainLayoutSidebar';
+import { MainLayoutNavigationBar } from 'components/MainLayout/MainLayoutNavigationBar';
 import { ThemeSwitcher } from 'components/ThemeSwitcher/ThemeSwitcher';
 
 import { StyledMainLayout, StyledMainLayoutContent, StyledMainLayoutToolbar } from './StyledMainLayout';
@@ -9,7 +9,7 @@ import { StyledMainLayout, StyledMainLayoutContent, StyledMainLayoutToolbar } fr
 export function MainLayout({ children }) {
   return (
     <StyledMainLayout>
-      <MainLayoutSidebar />
+      <MainLayoutNavigationBar />
       <StyledMainLayoutToolbar>
         <LanguageSwitcher />
         <ThemeSwitcher />

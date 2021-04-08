@@ -19,11 +19,11 @@ export const en = {
     notFound: {
       title: 'Not found',
     },
-    sidebar: {
-      main: 'Main',
-      logout: 'Log out',
-      navigation: {
-        login: 'Login',
+    navigationBar: {
+      userItems: {
+        logout: 'Log out',
+      },
+      mainItems: {
         main: 'Main',
       },
     },

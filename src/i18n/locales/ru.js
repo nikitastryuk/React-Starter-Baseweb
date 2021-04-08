@@ -19,11 +19,11 @@ export const ru = {
     notFound: {
       title: 'Не найдено',
     },
-    sidebar: {
-      main: 'Главная',
-      logout: 'Выйти',
-      navigation: {
-        login: 'Логин',
+    navigationBar: {
+      userItems: {
+        logout: 'Выйти',
+      },
+      mainItems: {
         main: 'Главная',
       },
     },
