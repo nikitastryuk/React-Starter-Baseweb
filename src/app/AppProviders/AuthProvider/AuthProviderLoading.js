@@ -6,10 +6,9 @@ import { StyledPage } from 'styles/StyledPage';
 export function AuthProviderLoading() {
   return (
     <StyledApp>
-      <StyledPage style={{ height: '100vh' }}>
+      <StyledPage>
         <StyledSpinnerNext data-testid="auth-provider-loading-spinner" />
       </StyledPage>
-      ;
     </StyledApp>
   );
 }
