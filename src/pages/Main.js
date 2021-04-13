@@ -34,7 +34,6 @@ MainErrorBoundary.propTypes = {
 
 class TestApi {
   static getTestData() {
-    axios.get('/test');
     return axios.get('https://api.chucknorris.io/jokes/random');
   }
 }
