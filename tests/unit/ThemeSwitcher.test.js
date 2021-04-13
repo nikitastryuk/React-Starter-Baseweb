@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { THEMES } from 'app/AppProviders/ThemeProvider';
@@ -16,14 +16,14 @@ jest.mock('hooks/useTheme', () => ({
 
 describe('<ThemeSwitcher />', () => {
   it('should change theme to light', async () => {
-    const { getByTestId } = render(<ThemeSwitcher />);
-    const button = getByTestId('light-theme-button');
+    render(<ThemeSwitcher />);
+    const button = screen.getByTestId('light-theme-button');
     userEvent.click(button);
     expect(mockedSetTheme).toBeCalledWith(THEMES.LIGHT);
   });
   it('should change theme to dark', async () => {
-    const { getByTestId } = render(<ThemeSwitcher />);
-    const button = getByTestId('dark-theme-button');
+    render(<ThemeSwitcher />);
+    const button = screen.getByTestId('dark-theme-button');
     userEvent.click(button);
     expect(mockedSetTheme).toBeCalledWith(THEMES.DARK);
   });
