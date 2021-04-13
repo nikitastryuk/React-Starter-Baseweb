@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['../.eslintrc.js', 'plugin:cypress/recommended', 'plugin:testing-library/react', 'plugin:jest/recommended'],
+  extends: ['plugin:cypress/recommended', 'plugin:testing-library/react', 'plugin:jest/recommended'],
   // Plugin provides a set of rules to apply manually.
   plugins: ['cypress', 'testing-library', 'jest'],
   // An environment defines global variables that are predefined.
